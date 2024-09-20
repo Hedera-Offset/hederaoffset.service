@@ -7,7 +7,8 @@ const allRoles = {
     'getUsers',
     'manageUsers',
     'getMe',
-    'getNotarizations'
+    'getNotarizations',
+    'getCarbonTokens'
   ],
   [Role.GENERATOR]: [
     'getUsers',
@@ -15,7 +16,8 @@ const allRoles = {
     'manageDevice',
     'getDevices',
     'getNotarizations',
-    'getMe'
+    'getMe',
+    'getCarbonTokens'
   ]
 };
 

@@ -18,6 +18,14 @@ router
     notarizedDataController.getNotarizations
   );
 
+
+router
+  .route('/tokens')
+  .get(
+    auth('getCarbonTokens'),
+    notarizedDataController.getTokens
+  )
+
 export default router;
 
 /**
@@ -132,6 +140,29 @@ export default router;
  *     responses:
  *       "200":
  *         description: OK
+ *       "401":
+ *         $ref: '#/components/responses/Unauthorized'
+ *       "403":
+ *         $ref: '#/components/responses/Forbidden'
+ */
+
+
+
+
+/**
+ * @swagger
+ * /notarizations/tokens:
+ *   get:
+ *     summary: Get All carbon for a user
+ *     description: Only user can call this.
+ *     tags: [Notarization]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       "200":
+ *         description: Success
+ *       "400":
+ *         $ref: '#/components/responses/DuplicateEmail'
  *       "401":
  *         $ref: '#/components/responses/Unauthorized'
  *       "403":
