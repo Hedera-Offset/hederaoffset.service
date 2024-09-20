@@ -55,6 +55,7 @@ model Device {
   manufacturer String
   accountId    String
   accountKey   String
+  publicKey    String
 
   data NotarizedData[]
 }

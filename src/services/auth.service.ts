@@ -25,6 +25,8 @@ const loginUserWithEmailAndPassword = async (
     'password',
     'role',
     'isEmailVerified',
+    'machineAuthToken',
+    'publicKey',
     'createdAt',
     'updatedAt'
   ]);
