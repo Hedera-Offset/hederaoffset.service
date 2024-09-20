@@ -51,9 +51,17 @@ export default router;
  *             required:
  *               - name
  *               - email
+ *               - role
+ *               - publicKey
+ *               - machineAuthToken
  *               - password
  *             properties:
  *               name:
+ *                 type: string
+ *               role:
+ *                 type: string
+ *                 enum: [GENERATOR, BUYER]
+ *               publicKey:
  *                 type: string
  *               email:
  *                 type: string
@@ -67,6 +75,8 @@ export default router;
  *             example:
  *               name: fake name
  *               email: fake@example.com
+ *               role: BUYER
+ *               publicKey: <your_account_id>
  *               password: password1
  *     responses:
  *       "201":

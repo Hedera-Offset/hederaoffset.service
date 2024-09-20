@@ -3,10 +3,12 @@ import catchAsync from '../utils/catchAsync';
 import { authService, userService, tokenService, emailService } from '../services';
 import exclude from '../utils/exclude';
 import { User } from '@prisma/client';
+import { randomUUID } from 'crypto';
 
 const register = catchAsync(async (req, res) => {
-  const { email, password } = req.body;
-  const user = await userService.createUser(email, password);
+  const { email, password, role, publicKey, name} = req.body;
+  const machineAuthToken = randomUUID().toString();
+  const user = await userService.createUser(email, password, name, publicKey, machineAuthToken,role);
   const userWithoutPassword = exclude(user, ['password', 'createdAt', 'updatedAt']);
   const tokens = await tokenService.generateAuthTokens(user);
   res.status(httpStatus.CREATED).send({ user: userWithoutPassword, tokens });

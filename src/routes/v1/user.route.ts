@@ -60,7 +60,7 @@ export default router;
  *                 description: At least one number and one letter
  *               role:
  *                  type: string
- *                  enum: [user, admin]
+ *                  enum: [GENERATOR, BUYER]
  *             example:
  *               name: fake name
  *               email: fake@example.com

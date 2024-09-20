@@ -13,6 +13,8 @@ const createUser = async (
   email: string,
   password: string,
   name?: string,
+  publicKey?: string,
+  machineAuthToken?: string,
   role: Role = Role.BUYER
 ): Promise<User> => {
   if (await getUserByEmail(email)) {
@@ -23,7 +25,9 @@ const createUser = async (
       email,
       name,
       password: await encryptPassword(password),
-      role
+      role,
+      publicKey,
+      machineAuthToken,
     }
   });
 };
