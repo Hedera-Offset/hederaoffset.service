@@ -52,7 +52,6 @@ const queryDevices = async <Key extends keyof Device>(
         'category',
         'manufacturer',
         'accountId',
-        'accountKey',
         'publicKey'
     ] as Key[]
 ): Promise<Pick<Device, Key>[]> => {
