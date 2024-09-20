@@ -15,7 +15,7 @@ model User {
   email           String   @unique
   name            String?
   password        String
-  role            Role     @default(USER)
+  role            Role     @default(BUYER)
   isEmailVerified Boolean  @default(false)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
@@ -34,8 +34,8 @@ model Token {
 }
 
 enum Role {
-  USER
-  ADMIN
+  GENERATOR
+  BUYER
 }
 
 enum TokenType {
