@@ -4,6 +4,8 @@ import ApiError from '../utils/ApiError';
 import catchAsync from '../utils/catchAsync';
 import { deviceService } from '../services';
 import { randomUUID } from 'crypto';
+import { generateAccount } from '../utils/hedera/device-creation';
+import * as env from "../config/config";
 
 const createDevice = catchAsync(async (req, res) => {
   const {
@@ -14,11 +16,12 @@ const createDevice = catchAsync(async (req, res) => {
     manufacturer,
   } = req.body;
 
+  
   const user: any = req.user;
 
-  const accountId = randomUUID();
-  const accountKey = randomUUID();
-  const publicKey = randomUUID();
+  // register device on hedera network
+  const [accountId,accountKey,publicKey] = await generateAccount(env.default.hedera.account_id,env.default.hedera.account_private_key);
+  
   const device = await deviceService.createDevice(
     user.id,
     country,
