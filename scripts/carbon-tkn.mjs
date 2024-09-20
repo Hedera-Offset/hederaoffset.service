@@ -24,18 +24,18 @@ async function main() {
         process.env.ACCOUNT_PRIVATE_KEY
     );
     console.log(accountKey);
-    const supplyKey = PrivateKey.generateED25519();
     const client = Client.forTestnet().setOperator(accountId, accountKey);
 
     let nftCreateTx = new TokenCreateTransaction()
         .setTokenName("Hedera Offset Carbon")
-        .setTokenSymbol("P1996")
+        .setTokenSymbol("HOC1")
         .setTokenType(TokenType.NonFungibleUnique)
         .setDecimals(0)
         .setInitialSupply(0)
         .setSupplyType(TokenSupplyType.Infinite)
         .setTreasuryAccountId(accountId)
-        .setSupplyKey(supplyKey)
+        .setSupplyKey(accountKey)
+        // .setKycKey(supplyKey)
         .freezeWith(client);
 
     const nftCreateTxSigned = await nftCreateTx.sign(accountKey);
@@ -46,6 +46,9 @@ async function main() {
     );
     const tokenId = nftCreateTxReceipt.tokenId;
     console.log(`Token id: ${tokenId.toString()}`);
+
+    client.close();
+
 }
 
 main();

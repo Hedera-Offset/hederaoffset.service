@@ -82,6 +82,7 @@
   },
   "dependencies": {
     "@hashgraph/sdk": "^2.49.2",
+    "@pinata/sdk": "^2.1.0",
     "@prisma/client": "^4.7.1",
     "@types/bcryptjs": "^2.4.2",
     "@types/nodemailer": "^6.4.7",
