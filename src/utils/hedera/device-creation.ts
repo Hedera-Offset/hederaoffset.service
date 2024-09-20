@@ -18,6 +18,7 @@ export async function generateAccount(operatorAccountId: string, operatorPrivate
     const txResponse = await transaction.execute(client);
     const receipt = await txResponse.getReceipt(client);
     const newAccountId = receipt.accountId;
+    client.close()
 
     return [newAccountId?.toString()!, newDeviceAccountKey.toStringDer(), newDeviceAccountKey.publicKey.toStringDer()];
 

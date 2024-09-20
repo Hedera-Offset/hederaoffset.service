@@ -94,12 +94,16 @@ export async function mint(
 
     console.log(`${tokeninfo.totalSupply}`);
 
-    // associate account2 with this NFT
-    let associateBobTx = await new TokenAssociateTransaction().setAccountId(accountId2).setTokenIds([tokenid]).freezeWith(client).sign(account2Key);
-    let associateBobTxSubmit = await associateBobTx.execute(client);
-    let associateBobRx = await associateBobTxSubmit.getReceipt(client);
-    console.log(`\n- Bob NFT manual association: ${associateBobRx.status}`);
-    console.log(`- See: https://hashscan.io/test/transaction/${associateBobTxSubmit.transactionId}`);
+    try {
+        // associate account2 with this NFT
+        let associateBobTx = await new TokenAssociateTransaction().setAccountId(accountId2).setTokenIds([tokenid]).freezeWith(client).sign(account2Key);
+        let associateBobTxSubmit = await associateBobTx.execute(client);
+        let associateBobRx = await associateBobTxSubmit.getReceipt(client);
+        console.log(`\n- Bob NFT manual association: ${associateBobRx.status}`);
+        console.log(`- See: https://hashscan.io/test/transaction/${associateBobTxSubmit.transactionId}`);
+    } catch {
+        console.log("Token already associated skipping")
+    }
 
     // // transfer
     let tokenTransferTx = await new TransferTransaction().addNftTransfer(tokenid, tokeninfo.totalSupply, accountId, accountId2).freezeWith(client).sign(accountKey);

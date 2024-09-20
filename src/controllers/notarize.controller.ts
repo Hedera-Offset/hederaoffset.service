@@ -46,11 +46,6 @@ const createNotarization = catchAsync(async (req, res) => {
     );
 
     const device = await deviceService.getDeviceById(deviceId);
-    console.log( env.default.hedera.token,
-        env.default.hedera.account_id,
-        env.default.hedera.account_private_key,
-        device?.accountId!,
-        device?.accountKey!)
     // mint carbon token on notarization
     await mint(
         pinata,
