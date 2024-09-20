@@ -125,7 +125,7 @@ export default router;
 
 /**
  * @swagger
- * /device/{id}:
+ * /devices/{id}:
  *   get:
  *     summary: Get a device
  *     description: 
