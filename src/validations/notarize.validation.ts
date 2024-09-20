@@ -20,7 +20,7 @@ const createNotarization = {
 
 const getNotarizations = {
   query: Joi.object().keys({
-    deviceId: Joi.number().integer(), 
+    deviceId: Joi.number().integer(),
     id: Joi.number().integer(),
     sortBy: Joi.string(),
     limit: Joi.number().integer(),
@@ -28,8 +28,7 @@ const getNotarizations = {
   })
 };
 
-
 export default {
-    createNotarization,
-    getNotarizations,
+  createNotarization,
+  getNotarizations
 };

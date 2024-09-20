@@ -1,8 +1,22 @@
 import { Role } from '@prisma/client';
 
 const allRoles = {
-  [Role.BUYER]: ['manageDevice','getDevices','getUsers', 'manageUsers'],
-  [Role.GENERATOR]: ['getUsers', 'manageUsers','manageDevice','getDevices','getNotarizations']
+  [Role.BUYER]: [
+    'manageDevice',
+    'getDevices',
+    'getUsers',
+    'manageUsers',
+    'getMe',
+    'getNotarizations'
+  ],
+  [Role.GENERATOR]: [
+    'getUsers',
+    'manageUsers',
+    'manageDevice',
+    'getDevices',
+    'getNotarizations',
+    'getMe'
+  ]
 };
 
 export const roles = Object.keys(allRoles);

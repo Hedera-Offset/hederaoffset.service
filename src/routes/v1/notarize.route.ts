@@ -8,9 +8,15 @@ const router = express.Router();
 
 router
   .route('/')
-  .post(validate(notarizedDataValidation.createNotarization), notarizedDataController.createNotarization)
-  .get(auth('getNotarizations'), validate(notarizedDataController.getNotarizations), notarizedDataController.getNotarizations);
-
+  .post(
+    validate(notarizedDataValidation.createNotarization),
+    notarizedDataController.createNotarization
+  )
+  .get(
+    auth('getNotarizations'),
+    validate(notarizedDataValidation.getNotarizations),
+    notarizedDataController.getNotarizations
+  );
 
 export default router;
 
