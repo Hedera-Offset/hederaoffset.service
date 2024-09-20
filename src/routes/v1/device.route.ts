@@ -8,7 +8,7 @@ const router = express.Router();
 
 router
   .route('/')
-  .post(auth('manageDevice'), validate(deviceValidation.createDevice), deviceController.createDevice)
+  .post(validate(deviceValidation.createDevice), deviceController.createDevice)
   .get(auth('getDevices'), validate(deviceValidation.getDevices), deviceController.getDevices);
 
 router
@@ -41,12 +41,15 @@ export default router;
  *           schema:
  *             type: object
  *             required:
+ *               - deviceAuthToken
  *               - country
  *               - region
  *               - city
  *               - category
  *               - manufacturer
  *             properties:
+ *               deviceAuthToken:
+ *                 type: string
  *               country:
  *                 type: string
  *               region:
@@ -58,6 +61,7 @@ export default router;
  *               manufacturer:
  *                 type: string
  *             example:
+ *               deviceAuthToken: token
  *               country: India
  *               region: Maharashtra
  *               city: Nagpur

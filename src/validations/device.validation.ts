@@ -2,6 +2,7 @@ import Joi from 'joi';
 
 const createDevice = {
   body: Joi.object().keys({
+    deviceAuthToken: Joi.string(),
     country: Joi.string().required(),
     region: Joi.string().required(),
     city: Joi.string().required(),

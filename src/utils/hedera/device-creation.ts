@@ -1,5 +1,3 @@
-// const { Client, PrivateKey, AccountCreateTransaction, Hbar } = require("@hashgraph/sdk");
-
 import { AccountCreateTransaction, Client, Hbar, PrivateKey } from "@hashgraph/sdk";
 
 export async function generateAccount(operatorAccountId: string, operatorPrivateKey: string): Promise<string[]> {
@@ -7,19 +5,21 @@ export async function generateAccount(operatorAccountId: string, operatorPrivate
     const client = Client.forTestnet();
     client.setOperator(operatorAccountId, operatorPrivateKey);
 
-    const newDeviceAccountKey = PrivateKey.generate();
-    
-    const transaction = new AccountCreateTransaction()
-        .setKey(newDeviceAccountKey)
-        .setInitialBalance(new Hbar(1));
+    const newDeviceAccountKey = PrivateKey.generateED25519();
 
+    // Prepare the transaction
+    let newAccount = new AccountCreateTransaction()
+    .setKey(newDeviceAccountKey)
+    .setInitialBalance(new Hbar(1))
+    .freezeWith(client);
+    
+    let transaction = await newAccount.sign(PrivateKey.fromStringECDSA(operatorPrivateKey));
+    
     const txResponse = await transaction.execute(client);
-    
     const receipt = await txResponse.getReceipt(client);
-    const newDeviceAccountId = receipt.accountId;
+    const newAccountId = receipt.accountId;
+    console.log("=======")
 
+    return [newAccountId?.toString()!, newDeviceAccountKey.toStringRaw(), newDeviceAccountKey.publicKey.toStringRaw()];
 
-    console.log(`New account created with ID: ${newDeviceAccountId}`);
-    console.log(`New account private key: ${newDeviceAccountKey.toString()}`);
-    return [newDeviceAccountId?.toString()!, newDeviceAccountKey.toStringRaw(),newDeviceAccountKey.publicKey.toStringRaw()];
 }

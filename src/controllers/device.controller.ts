@@ -6,9 +6,11 @@ import { deviceService } from '../services';
 import { randomUUID } from 'crypto';
 import { generateAccount } from '../utils/hedera/device-creation';
 import * as env from "../config/config";
+import prisma from '../client';
 
 const createDevice = catchAsync(async (req, res) => {
   const {
+    deviceAuthToken,
     country,
     region,
     city,
@@ -16,9 +18,16 @@ const createDevice = catchAsync(async (req, res) => {
     manufacturer,
   } = req.body;
 
-  
-  const user: any = req.user;
+  const user = await prisma.user.findFirst({
+    where: {
+      machineAuthToken: deviceAuthToken
+    }
+  });
 
+  if (!user) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid Auth Token');
+  }
+  
   // register device on hedera network
   const [accountId,accountKey,publicKey] = await generateAccount(env.default.hedera.account_id,env.default.hedera.account_private_key);
   
