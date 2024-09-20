@@ -2,7 +2,6 @@ import Joi from 'joi';
 
 const createDevice = {
   body: Joi.object().keys({
-    email: Joi.string().required().email(),
     country: Joi.string().required(),
     region: Joi.string().required(),
     city: Joi.string().required(),
