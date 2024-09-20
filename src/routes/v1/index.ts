@@ -2,6 +2,7 @@ import express from 'express';
 import authRoute from './auth.route';
 import userRoute from './user.route';
 import deviceRoute from './device.route';
+import notarizationDataRoute from './notarize.route';
 
 import docsRoute from './docs.route';
 import config from '../../config/config';
@@ -21,6 +22,10 @@ const defaultRoutes = [
     path: '/devices',
     route: deviceRoute
   },
+  {
+    path: '/notarizations',
+    route: notarizationDataRoute
+  }
 ];
 
 const devRoutes = [

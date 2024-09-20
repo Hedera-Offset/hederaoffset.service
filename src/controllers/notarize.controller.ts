@@ -43,7 +43,7 @@ const createNotarization = catchAsync(async (req, res) => {
 const getNotarizations = catchAsync(async (req, res) => {
     const filter = pick(req.query, ['deviceId', 'id']);
     const options = pick(req.query, ['sortBy', 'limit', 'page']);
-    const result = await deviceService.queryDevices(filter, options);
+    const result = await notarizedDataService.queryNotarizedData(filter, options);
     res.send(result);
 });
 

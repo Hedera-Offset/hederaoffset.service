@@ -13,7 +13,7 @@ router
 
 router
   .route('/:deviceId')
-  .get(auth('getDevices'), validate(deviceValidation.getDevice), deviceController.getDevices)
+  .get(auth('getDevices'), validate(deviceValidation.getDevice), deviceController.getDevice)
   .delete(auth('manageDevice'), validate(deviceValidation.deleteDevice), deviceController.deleteDevice);
 
 export default router;
