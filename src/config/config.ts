@@ -28,7 +28,9 @@ const envVarsSchema = Joi.object()
     EMAIL_FROM: Joi.string().description('the from field in the emails sent by the app'),
     ACCOUNT_PRIVATE_KEY: Joi.string().description('Account priv key of operator account'),
     ACCOUNT_ID: Joi.string().description('Account id of operator account'),
-    TOKEN_ID: Joi.string().description('Hedera offset carbon token id')
+    TOKEN_ID: Joi.string().description('Hedera offset carbon token id'),
+    PINATA_API: Joi.string().description('Pinata API Key not provided'),
+    PINATA_SECRET: Joi.string().description('Pinata Secret not provided')
   })
   .unknown();
 
@@ -65,5 +67,9 @@ export default {
     account_private_key: envVars.ACCOUNT_PRIVATE_KEY,
     account_id: envVars.ACCOUNT_ID,
     token: envVars.TOKEN_ID,
+  },
+  pinata: {
+    api_key: envVars.PINATA_API,
+    secret: envVars.PINATA_SECRET
   }
 };
