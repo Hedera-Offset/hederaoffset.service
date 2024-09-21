@@ -1,7 +1,7 @@
 import { Client, TopicMessageSubmitTransaction, AccountId, PrivateKey } from "@hashgraph/sdk"
 
 
-export async function hcs_submit_message(acc_id: string, acc_key: string, topic_id: string, event_msg: string) {
+export async function hcs_submit_message(acc_id: string, acc_key: string, topic_id: string, event_msg: string): Promise<number> {
     
     console.log("running", topic_id)
     const account_id = AccountId.fromString(acc_id);
@@ -18,10 +18,12 @@ export async function hcs_submit_message(acc_id: string, acc_key: string, topic_
     
     // Get the receipt of the transaction
     const getReceipt = await sendResponse.getReceipt(client);
-    console.log(parseInt(getReceipt.topicSequenceNumber));
+    // console.log(parseInt(getReceipt.topicSequenceNumber));
     // Get the status of the transaction
     const transactionStatus = getReceipt.status;
-    console.log("The message transaction status " + transactionStatus.toString());
+    // console.log("The message transaction status " + transactionStatus.toString());
     client.close();
+
+    return parseInt(getReceipt.topicSequenceNumber);
 
 }

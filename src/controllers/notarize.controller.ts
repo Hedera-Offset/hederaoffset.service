@@ -34,6 +34,8 @@ const createNotarization = catchAsync(async (req, res) => {
         raw
     } = req.body;
 
+    const seq_number = await hcs_submit_message(env.default.hedera.account_id,env.default.hedera.account_private_key, env.default.hedera.topic_id, "");
+
     const notarization = await notarizedDataService.createNotarization(
         deviceId,
         meter_type,
@@ -47,7 +49,7 @@ const createNotarization = catchAsync(async (req, res) => {
         factor,
         voltage,
         current,
-        raw
+        seq_number
     );
 
     const device = await deviceService.getDeviceById(deviceId);
@@ -60,8 +62,6 @@ const createNotarization = catchAsync(async (req, res) => {
         device?.accountId!,
         device?.accountKey!
     );
-
-    await hcs_submit_message(env.default.hedera.account_id,env.default.hedera.account_private_key, env.default.hedera.topic_id, "");
 
     res.status(httpStatus.CREATED).send(notarization);
 });

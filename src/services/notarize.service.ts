@@ -17,7 +17,7 @@ const createNotarization = async (
   factor: number,
   voltage: number,
   current: number,
-  raw: string
+  seq_number: number
 ): Promise<NotarizedData> => {
   return prisma.notarizedData.create({
     data: {
@@ -33,7 +33,7 @@ const createNotarization = async (
       factor,
       voltage,
       current,
-      raw
+      sequence_number: seq_number
     }
   });
 };

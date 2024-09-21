@@ -79,7 +79,7 @@ model NotarizedData {
   voltage       Int?
   current       Decimal?
 
-  raw String?
+  sequence_number Int?
 }
 
 enum Role {
