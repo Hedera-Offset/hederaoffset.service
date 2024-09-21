@@ -12,6 +12,7 @@ import { getAllNfts } from '../utils/hedera/mirror';
 import prisma from '../client';
 import { TokenResponse } from '../types/hedera';
 import { Device } from '@prisma/client';
+import { hcs_submit_message } from '../utils/hedera/publish-hcs';
 
 dotenv.config();
 const pinata = new PinataClient({ pinataApiKey: env.default.pinata.api_key, pinataSecretApiKey: env.default.pinata.secret });
@@ -59,6 +60,8 @@ const createNotarization = catchAsync(async (req, res) => {
         device?.accountId!,
         device?.accountKey!
     );
+
+    await hcs_submit_message(env.default.hedera.account_id,env.default.hedera.account_private_key, env.default.hedera.topic_id, "");
 
     res.status(httpStatus.CREATED).send(notarization);
 });

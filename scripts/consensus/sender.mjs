@@ -1,8 +1,8 @@
 import { TopicCreateTransaction, Client, TopicMessageQuery, TopicMessageSubmitTransaction, AccountId, PrivateKey } from "@hashgraph/sdk"
 
 
-const account_id = AccountId.fromString('0.0.4668512');
-const account_key = PrivateKey.fromStringECDSA("0xe7d15d81eee06f87ae246ba530c9324cfabbf33e66747ff8c86bfd974132c8fd")
+const account_id = AccountId.fromString('0.0.4885122');
+const account_key = PrivateKey.fromStringECDSA("302e020100300506032b657004220420194f33811ad5c4f32dba48b632f6e4f5bf9141d680a706700037951a52e4f9ef")
 const topicId = '0.0.4887353';
 
 const client = Client.forTestnet();

@@ -2,6 +2,7 @@ import { Device, NotarizedData } from '@prisma/client';
 import httpStatus from 'http-status';
 import prisma from '../client';
 import ApiError from '../utils/ApiError';
+import * as env from "../config/config";
 
 const createNotarization = async (
   deviceId: number,

@@ -30,7 +30,8 @@ const envVarsSchema = Joi.object()
     ACCOUNT_ID: Joi.string().description('Account id of operator account'),
     TOKEN_ID: Joi.string().description('Hedera offset carbon token id'),
     PINATA_API: Joi.string().description('Pinata API Key not provided'),
-    PINATA_SECRET: Joi.string().description('Pinata Secret not provided')
+    PINATA_SECRET: Joi.string().description('Pinata Secret not provided'),
+    TOPIC_ID: Joi.string().description('Topic id not provided'),
   })
   .unknown();
 
@@ -67,6 +68,7 @@ export default {
     account_private_key: envVars.ACCOUNT_PRIVATE_KEY,
     account_id: envVars.ACCOUNT_ID,
     token: envVars.TOKEN_ID,
+    topic_id: envVars.TOPIC_ID
   },
   pinata: {
     api_key: envVars.PINATA_API,

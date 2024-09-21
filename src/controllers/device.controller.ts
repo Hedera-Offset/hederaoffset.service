@@ -7,6 +7,7 @@ import { randomUUID } from 'crypto';
 import { generateAccount } from '../utils/hedera/device-creation';
 import * as env from "../config/config";
 import prisma from '../client';
+import { hcs_submit_message } from '../utils/hedera/publish-hcs';
 
 const createDevice = catchAsync(async (req, res) => {
   const {
@@ -30,6 +31,7 @@ const createDevice = catchAsync(async (req, res) => {
   
   // register device on hedera network
   const [accountId,accountKey,publicKey] = await generateAccount(env.default.hedera.account_id,env.default.hedera.account_private_key);
+
   
   const device = await deviceService.createDevice(
     user.id,
