@@ -60,7 +60,7 @@ const queryNotarizedData = async <Key extends keyof NotarizedData>(
     'factor',
     'voltage',
     'current',
-    'raw'
+    'sequence_number'
   ] as Key[]
 ): Promise<Pick<NotarizedData, Key>[]> => {
   const page = options.page ?? 1;
@@ -93,7 +93,7 @@ const getNotarizedDataById = async <Key extends keyof NotarizedData>(
     'factor',
     'voltage',
     'current',
-    'raw'
+    'sequence_number'
   ] as Key[]
 ): Promise<Pick<NotarizedData, Key> | null> => {
   return prisma.notarizedData.findUnique({

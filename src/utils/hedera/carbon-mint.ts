@@ -16,6 +16,25 @@ import PinataClient from "@pinata/sdk";
 // const pinataSDK = require('@pinata/sdk');
 import { createHash } from "crypto";
 
+function getCurrentTimeFormatted() {
+    const now = new Date();
+  
+    // Get components of the current date and time
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-based, so add 1
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+  
+    // Return the formatted string
+    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+  }
+  
+  // Example usage:
+  console.log(getCurrentTimeFormatted()); // Outputs the current time in YYYY-MM-DDTHH:mm:ss format
+  
+
 export async function mint(
     pinata: PinataClient,
     tokenid: string, 
@@ -49,11 +68,11 @@ export async function mint(
         "description": "Carbon token standart for Hedera Offset carbon market",
         "properties": {
             "provider": "hedera offset",
-            "machine_cid": "03B8B49C9A616115BCFC17CD33B535909922B03C1C0A7DEC97C0C3FBC0A21BF10C",
-            "machine_address": "plmnt10f9rmpaded47gumjcfwkswyyalw4qx6yf39nxu",
+            "company_address": account_id,
+            "machine_address": device_id,
             "cid": "bafkreicezvdkqbdfhz7sf336nwve2bw56yqqj5t4eadbnqlctrwtmjmuly",
-            "location": "MH",
-            "timestamp": "2024-06-06T12:22:44",
+            "location": "SIN",
+            "timestamp": getCurrentTimeFormatted(),
             "energy": 1
         },
         "files": [
